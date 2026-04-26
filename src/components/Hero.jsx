@@ -3,6 +3,7 @@ import { OrbitControls, Environment, Center } from '@react-three/drei'
 import { Suspense } from 'react'
 import { motion } from 'framer-motion'
 import Cubes from './Cubes'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 // ─── Reusable stagger animation config ───────────────────────────────────────
 const fadeUp = (delay) => ({
@@ -190,7 +191,7 @@ const Hero = () => {
       </div>
 
       {/* ── Right: 3D Model ─────────────────────────────────────────────────── */}
-      <div className="absolute lg:top-0 top-[-20%] bottom-0 lg:right-0 lg:left-auto lg:w-[55%] sm:left-[-2%] w-full h-full">
+      {/* <div className="absolute lg:top-0 top-[-20%] bottom-0 lg:right-0 lg:left-auto lg:w-[55%] sm:left-[-2%] w-full h-full">
         <Canvas camera={{ position: [0, 2, 5], fov: 50 }}>
           <ambientLight intensity={1} />
           <directionalLight position={[5, 10, 5]} intensity={2} />
@@ -219,8 +220,15 @@ const Hero = () => {
             </Center>
           </Suspense>
         </Canvas>
+      </div> */}
+      <div className="w-full h-72 md:h-80">
+        <DotLottieReact
+          src="/assets/animations/code.json"
+          loop
+          autoplay
+          style={{ width: '100%', height: '100%', background: 'transparent' }}
+        />
       </div>
-
     </section >
   )
 }
