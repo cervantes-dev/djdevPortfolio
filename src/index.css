@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply bg-black text-white;
+  @apply bg-gray-900 text-white;
 }
 html {
     scroll-behavior: smooth;
