@@ -31,35 +31,40 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
         gl={{ alpha: transparent }}
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
       >
+        {/* Ambient light — keep at original intensity to avoid scene-wide color bleed */}
         <ambientLight intensity={Math.PI} />
+
         <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
           <Band isMobile={isMobile} />
         </Physics>
+
         <Environment blur={0.75}>
+          {/* Main band-facing light — colored to match theme */}
           <Lightformer
-            intensity={2}
-            color="gray"
+            intensity={4}
+            color="#a855f7"
             position={[0, -1, 5]}
             rotation={[0, 0, Math.PI / 3]}
             scale={[100, 0.1, 1]}
           />
+          {/* Remaining lightformers back to neutral white — prevents glow bleed on photo */}
           <Lightformer
             intensity={3}
-            color="gray"
+            color="white"
             position={[-1, -1, 1]}
             rotation={[0, 0, Math.PI / 3]}
             scale={[100, 0.1, 1]}
           />
           <Lightformer
             intensity={3}
-            color="gray"
+            color="white"
             position={[1, 1, 1]}
             rotation={[0, 0, Math.PI / 3]}
             scale={[100, 0.1, 1]}
           />
           <Lightformer
             intensity={10}
-            color="gray"
+            color="white"
             position={[-10, 0, 14]}
             rotation={[0, Math.PI / 2, Math.PI / 3]}
             scale={[100, 10, 1]}
@@ -69,6 +74,7 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
     </div>
   );
 }
+
 function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   const band = useRef(),
     fixed = useRef(),
@@ -177,16 +183,18 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
           </group>
         </RigidBody>
       </group>
+
+      {/* ✅ KEY CHANGES: lineWidth 1→2.5, color white→purple, repeat adjusted */}
       <mesh ref={band}>
         <meshLineGeometry />
         <meshLineMaterial
-          color="white"
+          color="#a855f7"
           depthTest={false}
           resolution={isMobile ? [1000, 2000] : [1000, 1000]}
           useMap
           map={texture}
-          repeat={[-4, 1]}
-          lineWidth={1}
+          repeat={[-3, 1]}
+          lineWidth={2.5}
         />
       </mesh>
     </>
