@@ -8,7 +8,6 @@ const fadeUp = (delay) => ({
   transition: { duration: 0.65, delay, ease: [0.25, 0.46, 0.45, 0.94] }
 })
 
-// Replace boxicons socials with raw SVG paths
 const socials = [
   {
     label: 'Facebook',
@@ -28,7 +27,7 @@ const socials = [
   {
     label: 'LinkedIn',
     href: '#',
-    path: "M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"
+    path: "M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 .77 0 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"
   },
   {
     label: 'GitHub',
@@ -46,8 +45,11 @@ const Hero = () => {
 
         {/* Greeting */}
         <motion.div {...fadeUp(0)} className="flex items-center gap-3 mb-3">
-          <span className="font-mono text-[#d946ef] font-semibold tracking-widest text-sm uppercase">
-            Hi! <motion.span
+          <span className="font-mono text-sm uppercase tracking-widest font-semibold">
+            <span className="bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
+              Hi!
+            </span>{" "}
+            <motion.span
               animate={{ rotate: [0, 20, -10, 20, 0] }}
               transition={{
                 duration: 0.8,
@@ -55,18 +57,17 @@ const Hero = () => {
                 repeatDelay: 1.5,
                 ease: "easeInOut",
               }}
-              style={{ display: 'inline-block', transformOrigin: 'bottom right' }}
+              style={{ display: "inline-block", transformOrigin: "bottom right" }}
             >
               👋
             </motion.span>
-
           </span>
           {/* Animated accent line */}
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: 40 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="h-px bg-linear-to-r from-purple-400 to-transparent"
+            className="h-px bg-gradient-to-r from-purple-400 to-transparent"
           />
         </motion.div>
 
@@ -76,7 +77,7 @@ const Hero = () => {
           className="font-syne text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight"
         >
           I'm{" "}
-          <span className="bg-linear-to-r from-purple-400 via-[#a855f7] to-cyan-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
             David
           </span>
         </motion.h1>
@@ -93,48 +94,48 @@ const Hero = () => {
         {/* CTA Buttons */}
         <motion.div {...fadeUp(0.5)} className="flex flex-wrap gap-3 mt-7">
 
-          {/* Primary — matches footer gradient */}
+          {/* Primary */}
           <a
             href="#project"
             className="
               font-jakarta font-semibold
               px-7 py-2.5 rounded-full text-sm tracking-wider text-white
-              bg-linear-to-r from-purple-500 to-cyan-500
-              hover:from-purple-400 hover:to-cyan-400
-              shadow-[0_0_20px_rgba(168,85,247,0.4)]
-              hover:shadow-[0_0_30px_rgba(168,85,247,0.65)]
+              bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040]
+              hover:brightness-110
+              shadow-[0_0_20px_rgba(255,77,0,0.4)]
+              hover:shadow-[0_0_30px_rgba(255,77,0,0.65)]
               transition-all duration-300
             "
           >
             View Work
           </a>
 
-          {/* Secondary — matches footer border style */}
+          {/* Secondary */}
           <a
             href="#contact"
             className="
               font-jakarta font-semibold
               px-7 py-2.5 rounded-full text-sm tracking-wider
-              ring-1 ring-purple-400/70
-              hover:ring-cyan-400/80
-              hover:bg-purple-400/10
-              hover:shadow-[0_0_16px_rgba(192,132,252,0.25)]
+              ring-1 ring-[#ff4d00]/70
+              hover:ring-[#ff0040]/80
+              hover:bg-[#ff4d00]/10
+              hover:shadow-[0_0_16px_rgba(255,77,0,0.25)]
               transition-all duration-300
             "
           >
-            <span className="bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
               Contact Me
             </span>
           </a>
         </motion.div>
 
         {/* Social Icons */}
-        {/* Hidden gradient — defined once */}
         <svg width="0" height="0" className="absolute">
           <defs>
             <linearGradient id="social-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#a855f7" />
-              <stop offset="100%" stopColor="#22d3ee" />
+              <stop offset="0%" stopColor="#ff2d55" />
+              <stop offset="50%" stopColor="#ff4d00" />
+              <stop offset="100%" stopColor="#ff0040" />
             </linearGradient>
           </defs>
         </svg>
@@ -150,9 +151,9 @@ const Hero = () => {
               className="
                 group p-2.5 rounded-full
                 bg-white/5 border border-white/10
-                hover:border-purple-400/60
-                hover:bg-purple-400/10
-                hover:shadow-[0_0_12px_rgba(192,132,252,0.3)]
+                hover:border-[#ff4d00]/60
+                hover:bg-[#ff4d00]/10
+                hover:shadow-[0_0_12px_rgba(255,77,0,0.3)]
                 transition-all duration-300
               "
             >
@@ -162,6 +163,7 @@ const Hero = () => {
                 height="18"
                 viewBox="0 0 24 24"
                 className="transition-transform duration-300 group-hover:scale-110"
+                className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-100"
                 style={{ opacity: 0.7 }}
               >
                 <path fill="url(#social-grad)" d={path} />
@@ -169,6 +171,7 @@ const Hero = () => {
             </a>
           ))}
         </motion.div>
+
         {/* Scroll hint */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -179,15 +182,15 @@ const Hero = () => {
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-            className="w-px h-7 bg-linear-to-b from-transparent to-gray-600"
+            className="w-px h-7 bg-gradient-to-b from-transparent to-gray-600"
           />
           <span className="font-mono text-xs tracking-widest uppercase">Scroll</span>
         </motion.div>
 
       </div>
 
-      {/* ── Right: 3D Illustrations ─────────────────────────────────────────────────── */}
-      <div className="w-full h-72 md:h-80">
+      {/* ── Right: Lottie Animation ─────────────────────────────────────────── */}
+      <div className="w-full lg:w-1/2 h-72 md:h-96 lg:h-full lg:min-h-screen flex items-center justify-center">
         <DotLottieReact
           src="/assets/animations/programming.json"
           loop
@@ -195,7 +198,8 @@ const Hero = () => {
           style={{ width: '100%', height: '100%', background: 'transparent' }}
         />
       </div>
-    </section >
+
+    </section>
   )
 }
 

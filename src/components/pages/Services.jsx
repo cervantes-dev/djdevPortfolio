@@ -80,7 +80,7 @@ const Services = () => {
                     {...fadeUp(0)}
                     className="w-fit font-mono text-xs font-semibold tracking-widest uppercase border border-purple-500/40 bg-purple-500/10 px-4 py-1.5 rounded-full"
                 >
-                    <span className="bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                    <span className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
                         What I Offer
                     </span>
                 </motion.span>
@@ -92,7 +92,7 @@ const Services = () => {
                     </motion.span>
                     <motion.span
                         {...fadeUp(0.22)}
-                        className="bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent block"
+                        className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent block"
                     >
                         Make an Impact
                     </motion.span>

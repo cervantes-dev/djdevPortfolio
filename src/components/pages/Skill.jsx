@@ -50,7 +50,7 @@ const Skills = () => {
                         viewport={{ once: false }}
                         className='w-fit font-mono text-xs font-semibold tracking-widest uppercase border border-purple-500/40 bg-purple-500/10 px-4 py-1.5 rounded-full'
                     >
-                        <span className='bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent'>
+                        <span className='bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent'>
                             My Skills
                         </span>
                     </motion.span>
@@ -71,7 +71,7 @@ const Skills = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.22, ease: "easeOut" }}
                             viewport={{ once: false }}
-                            className='bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent block'
+                            className='bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent block'
                         >
                             Weapons of Choice
                         </motion.span>

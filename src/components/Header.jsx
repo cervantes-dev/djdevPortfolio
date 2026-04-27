@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from '@boxicons/react';
+import { Menu, X } from 'lucide-react';
 import '@fontsource/jetbrains-mono/800.css';
 import '@fontsource/plus-jakarta-sans/400.css';
 import '@fontsource/plus-jakarta-sans/500.css';
@@ -19,7 +19,6 @@ const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
 
-    // ── Scrolled state ──────────────────────────────────────────────────────
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener("scroll", handleScroll);
@@ -47,7 +46,6 @@ const Header = () => {
         return () => observers.forEach((o) => o.disconnect());
     }, []);
 
-    // ── Lock body scroll when mobile menu is open ───────────────────────────
     useEffect(() => {
         document.body.style.overflow = menuOpen ? 'hidden' : '';
     }, [menuOpen]);
@@ -60,7 +58,7 @@ const Header = () => {
                 py-3 px-4 lg:px-20
                 transition-all duration-300
                 ${scrolled
-                    ? "bg-black/60 backdrop-blur-md shadow-[0_1px_0_rgba(217,70,239,0.15)]"
+                    ? "bg-black/60 backdrop-blur-md shadow-[0_1px_0_rgba(255,140,0,0.15)]"
                     : "bg-transparent"
                 }
             `}
@@ -70,10 +68,11 @@ const Header = () => {
                 <Logo className="w-48 h-auto" />
             </a>
 
-            {/* ── Desktop Nav ────────────────────────────────────────────────── */}
+            {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-6">
                 {navLinks.map(({ label, href, id }) => {
                     const isActive = activeSection === id;
+
                     return (
                         <a
                             key={label}
@@ -82,11 +81,11 @@ const Header = () => {
                                 relative font-mono text-xs tracking-widest
                                 transition-colors duration-300
                                 after:absolute after:left-0 after:-bottom-1 after:h-px
-                                after:bg-linear-to-r after:from-[#d946ef] after:to-[#38bdf8]
+                                after:bg-gradient-to-r after:from-[#ff8a00] after:via-[#ff4d00] after:to-[#ff0040]
                                 after:transition-all after:duration-300
                                 ${isActive
-                                    ? "text-[#d946ef] after:w-full"
-                                    : "text-gray-300 hover:text-[#d946ef] after:w-0 hover:after:w-full"
+                                    ? "bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent after:w-full"
+                                    : "text-gray-300 hover:text-[#ff8a00] after:w-0 hover:after:w-full"
                                 }
                             `}
                         >
@@ -99,13 +98,13 @@ const Header = () => {
             {/* Mobile Menu Toggle */}
             <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="md:hidden z-50 p-2 text-gray-300 hover:text-[#d946ef] transition-colors"
+                className="md:hidden z-50 p-2 text-gray-300 hover:text-[#ff8a00] transition-colors"
                 aria-label="Toggle menu"
             >
-                {menuOpen ? <X size="24px" /> : <Menu size="24px" />}
+                {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
 
-            {/* ── Mobile Nav Overlay ──────────────────────────────────────────── */}
+            {/* Mobile Nav */}
             <div
                 className={`
                     fixed inset-0 z-40 md:hidden
@@ -115,11 +114,11 @@ const Header = () => {
                     ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
                 `}
             >
-                {/* Decorative glow blob */}
-                <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#763aba]/20 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#ff4d00]/20 rounded-full blur-3xl pointer-events-none" />
 
                 {navLinks.map(({ label, href, id }, i) => {
                     const isActive = activeSection === id;
+
                     return (
                         <a
                             key={label}
@@ -131,24 +130,22 @@ const Header = () => {
                                 transition-all duration-300
                                 ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
                                 ${isActive
-                                    ? "bg-linear-to-r from-[#d946ef] via-[#a855f7] to-[#38bdf8] bg-clip-text text-transparent"
+                                    ? "bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent"
                                     : "text-gray-400 hover:text-white"
                                 }
                             `}
                         >
                             {label}
-                            {/* Active dot indicator */}
+
                             {isActive && (
-                                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#d946ef]" />
+                                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#ff4d00]" />
                             )}
                         </a>
                     );
                 })}
 
-                {/* Bottom accent line */}
-                <div className="absolute bottom-10 w-16 h-px bg-linear-to-r from-[#d946ef] to-[#38bdf8]" />
+                <div className="absolute bottom-10 w-16 h-px bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040]" />
             </div>
-
         </header>
     );
 };

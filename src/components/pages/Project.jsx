@@ -382,7 +382,7 @@ const Project = () => {
       <div className="flex flex-col items-center text-center gap-4 mb-16">
         <motion.span {...fadeUp(0)}
           className="w-fit font-mono text-xs font-semibold tracking-[0.2em] uppercase border border-purple-500/40 bg-purple-500/10 px-4 py-1.5 rounded-full">
-          <span className="bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
             featured projects
           </span>
         </motion.span>
@@ -391,7 +391,7 @@ const Project = () => {
           {/* ✅ removed via-fuchsia-400 */}
           <motion.span {...fadeUp(0.1)} className="text-white block">Things I've</motion.span>
           <motion.span {...fadeUp(0.2)}
-            className="bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent block">
+            className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent block">
             Built
           </motion.span>
         </h2>

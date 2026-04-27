@@ -31,7 +31,7 @@ const ContactMe = () => {
           {/* Heading */}
           <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">
             Let's Work <br />
-            <span className="bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
               Together
             </span>
           </h2>
