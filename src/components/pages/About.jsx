@@ -53,7 +53,7 @@ const About = () => {
                         viewport={{ once: false }}
                         className='w-fit font-mono text-xs font-semibold tracking-widest uppercase border border-purple-500/40 bg-purple-500/10 px-4 py-1.5 rounded-full'
                     >
-                        <span className='bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent'>
+                        <span className='bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent'>
                             about me
                         </span>
                     </motion.span>
@@ -74,7 +74,7 @@ const About = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.22, ease: "easeOut" }}
                             viewport={{ once: false }}
-                            className='bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent block'
+                            className='bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent block'
                         >
                             Just a Developer
                         </motion.span>
@@ -118,7 +118,7 @@ const About = () => {
                         {/* Education Label */}
                         <div className='flex items-center gap-2'>
                             <span className='text-base'>🎓</span>
-                            <span className='font-mono text-xs font-semibold tracking-widest uppercase bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent'>
+                            <span className='font-mono text-xs font-semibold tracking-widest uppercase bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent'>
                                 Education
                             </span>
                         </div>
@@ -126,7 +126,7 @@ const About = () => {
                         {/* Degree */}
                         <h4 className='font-jakarta text-white font-bold text-sm leading-snug'>
                             Bachelor of Science in Information Technology
-                            <span className='font-jakarta text-purple-400 font-normal'> — Programming</span>
+                            <span className='font-jakarta text-[#ff8a00] font-normal'> — Programming</span>
                         </h4>
 
                         {/* School */}
@@ -174,7 +174,7 @@ const About = () => {
                                     cursor-default
                                 '
                             >
-                                <span className='font-syne text-2xl font-bold bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent'>
+                                <span className='font-syne text-2xl font-bold bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent'>
                                     {stat.value}
                                 </span>
                                 <span className='font-jakarta text-xs text-gray-400 mt-1 tracking-wider text-center whitespace-nowrap'>

@@ -69,7 +69,7 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start gap-1">
             <span className="text-white font-black text-xl tracking-tight">
               DJ{' '}
-              <span className="bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
                 DEVS
               </span>
             </span>
@@ -131,7 +131,7 @@ const Footer = () => {
             {/* Copyright — below socials */}
             <p className="text-white/25 text-xs tracking-wide text-center">
               © {currentYear} DJ Devs · Designed & Built by{' '}
-              <span className="bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent font-semibold">
+              <span className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent font-semibold">
                 David John Cervantes
               </span>
             </p>
@@ -169,7 +169,7 @@ const Footer = () => {
             </svg>
 
             {/* Gradient text */}
-            <span className="relative z-10 bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="relative z-10 bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
               Back to top
             </span>
           </button>

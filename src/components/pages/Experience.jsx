@@ -176,7 +176,7 @@ export default function Experience() {
                     {...fadeUp(0)}
                     className="w-fit font-mono text-xs font-semibold tracking-widest uppercase border border-purple-500/40 bg-purple-500/10 px-4 py-1.5 rounded-full"
                 >
-                    <span className="bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                    <span className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
                         experience
                     </span>
                 </motion.span>
@@ -186,7 +186,7 @@ export default function Experience() {
                     <motion.span {...fadeUp(0.1)} className="text-white block">
                         My Journey
                     </motion.span>
-                    <motion.span {...fadeUp(0.22)} className="bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent block">
+                    <motion.span {...fadeUp(0.22)} className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent block">
                         So Far
                     </motion.span>
                 </h2>
