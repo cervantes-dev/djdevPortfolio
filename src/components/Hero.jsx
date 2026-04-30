@@ -67,7 +67,7 @@ const Hero = () => {
             initial={{ width: 0 }}
             animate={{ width: 40 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="h-px bg-gradient-to-r from-purple-400 to-transparent"
+            className="h-px bg-gradient-to-r from--[#ff8a00] via-[#ff4d00] to-transparent"
           />
         </motion.div>
 

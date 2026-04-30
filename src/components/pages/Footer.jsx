@@ -95,7 +95,7 @@ const Footer = () => {
                   <span
                     className="block transition-all duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.7)]"
                     style={{
-                      background: 'linear-gradient(135deg, #a855f7, #22d3ee)',
+                      background: 'linear-gradient(#ff8a00, #ff4d00, #ff0040)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       filter: 'opacity(0.6)',
@@ -112,8 +112,9 @@ const Footer = () => {
                     >
                       <defs>
                         <linearGradient id={`grad-${name}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#a855f7" />
-                          <stop offset="100%" stopColor="#22d3ee" />
+                          <stop offset="0%" stopColor="#ff2d55" />
+                          <stop offset="50%" stopColor="#ff4d00" />
+                          <stop offset="100%" stopColor="#ff0040" />
                         </linearGradient>
                       </defs>
                       {/* Render the path with gradient fill */}
@@ -161,8 +162,9 @@ const Footer = () => {
             >
               <defs>
                 <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#a855f7" />
-                  <stop offset="100%" stopColor="#22d3ee" />
+                  <stop offset="0%" stopColor="#ff2d55" />
+                  <stop offset="50%" stopColor="#ff4d00" />
+                  <stop offset="100%" stopColor="#ff0040" />
                 </linearGradient>
               </defs>
               <path stroke="url(#arrowGrad)" strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />

@@ -6,7 +6,6 @@ import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
-// replace with your own imports, see the usage snippet for details
 const cardGLB = '/models/card.glb';
 const lanyard = '/models/lanyard.png';
 
@@ -31,7 +30,6 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
         gl={{ alpha: transparent }}
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
       >
-        {/* Ambient light — keep at original intensity to avoid scene-wide color bleed */}
         <ambientLight intensity={Math.PI} />
 
         <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
@@ -39,15 +37,14 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
         </Physics>
 
         <Environment blur={0.75}>
-          {/* Main band-facing light — colored to match theme */}
+          {/* ✅ Lightformer matches #ff4d00 brand gradient */}
           <Lightformer
             intensity={4}
-            color="#a855f7"
+            color="#ff4d00"
             position={[0, -1, 5]}
             rotation={[0, 0, Math.PI / 3]}
             scale={[100, 0.1, 1]}
           />
-          {/* Remaining lightformers back to neutral white — prevents glow bleed on photo */}
           <Lightformer
             intensity={3}
             color="white"
@@ -169,6 +166,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
             )}
           >
             <mesh geometry={nodes.card.geometry}>
+              {/* ✅ Original card material — untouched */}
               <meshPhysicalMaterial
                 map={materials.base.map}
                 map-anisotropy={16}
@@ -184,11 +182,12 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
         </RigidBody>
       </group>
 
-      {/* ✅ KEY CHANGES: lineWidth 1→2.5, color white→purple, repeat adjusted */}
       <mesh ref={band}>
         <meshLineGeometry />
+        {/* ✅ #ff4d00 tints the texture with your brand gradient middle color
+            useMap blends texture pattern ON TOP of the color for a woven look */}
         <meshLineMaterial
-          color="#a855f7"
+          color="#ff4d00"
           depthTest={false}
           resolution={isMobile ? [1000, 2000] : [1000, 1000]}
           useMap

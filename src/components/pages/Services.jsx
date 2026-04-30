@@ -75,12 +75,12 @@ const Services = () => {
                 style={{ y: titleY, opacity: titleOpacity }}
                 className="flex flex-col items-center text-center gap-4 mb-16"
             >
-                {/* Pill */}
+                {/* Pill — purple border, orange gradient text */}
                 <motion.span
                     {...fadeUp(0)}
                     className="w-fit font-mono text-xs font-semibold tracking-widest uppercase border border-purple-500/40 bg-purple-500/10 px-4 py-1.5 rounded-full"
                 >
-                    <span className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
                         What I Offer
                     </span>
                 </motion.span>
@@ -92,7 +92,7 @@ const Services = () => {
                     </motion.span>
                     <motion.span
                         {...fadeUp(0.22)}
-                        className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent block"
+                        className="bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent block"
                     >
                         Make an Impact
                     </motion.span>
@@ -132,15 +132,15 @@ const Services = () => {
                         "
                         style={{ borderRadius: '4px 24px 4px 24px' }}
                     >
-                        {/* Corner accent — top right */}
+                        {/* Corner accent — top right (purple) */}
                         <div
                             className="absolute top-0 right-0 w-16 h-16 bg-purple-500/10 group-hover:bg-purple-400/15 transition-all duration-300"
                             style={{ borderRadius: '0 24px 0 100%' }}
                         />
 
-                        {/* Corner accent — bottom left */}
+                        {/* Corner accent — bottom left (orange tint) */}
                         <div
-                            className="absolute bottom-0 left-0 w-12 h-12 bg-cyan-500/10 group-hover:bg-cyan-400/15 transition-all duration-300"
+                            className="absolute bottom-0 left-0 w-12 h-12 bg-orange-500/10 group-hover:bg-orange-400/15 transition-all duration-300"
                             style={{ borderRadius: '100% 0 0 24px' }}
                         />
 
@@ -162,20 +162,26 @@ const Services = () => {
                             {service.desc}
                         </p>
 
-                        {/* Tags */}
+                        {/* Tags — purple border bg, orange gradient text */}
                         <div className="flex flex-wrap gap-2 mt-auto z-10">
                             {service.tags.map((tag, t) => (
                                 <span
                                     key={t}
-                                    className="font-mono text-[10px] px-2.5 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 group-hover:border-purple-400/50 transition-all duration-200"
+                                    className="font-mono text-[10px] px-2.5 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 group-hover:border-purple-400/50 transition-all duration-200"
+                                    style={{
+                                        background: 'linear-gradient(to right, #ff8a00, #ff4d00, #ff0040)',
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent',
+                                        backgroundClip: 'text',
+                                    }}
                                 >
                                     {tag}
                                 </span>
                             ))}
                         </div>
 
-                        {/* Bottom gradient line — reveals on hover */}
-                        <div className="absolute bottom-0 left-6 right-6 h-px bg-linear-to-r from-purple-400/0 via-purple-400/60 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        {/* Bottom gradient line — orange-to-red on hover */}
+                        <div className="absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r from-[#ff8a00]/0 via-[#ff4d00]/60 to-[#ff0040]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </motion.div>
                 ))}
             </div>
