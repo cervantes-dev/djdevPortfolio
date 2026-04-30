@@ -71,7 +71,7 @@ const ContactMe = () => {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="David Cruz"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm outline-none focus:border-purple-500/60 focus:bg-purple-500/5 transition-all duration-200"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm outline-none focus:border-orange-500/60 focus:bg-orange-500/5 transition-all duration-200"
               />
             </div>
 
@@ -86,7 +86,7 @@ const ContactMe = () => {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="david@example.com"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm outline-none focus:border-purple-500/60 focus:bg-purple-500/5 transition-all duration-200"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm outline-none focus:border-orange-500/60 focus:bg-orange-500/5 transition-all duration-200"
               />
             </div>
 
@@ -101,12 +101,12 @@ const ContactMe = () => {
                 onChange={handleChange}
                 placeholder="Tell me about your project..."
                 rows={5}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm outline-none focus:border-purple-500/60 focus:bg-purple-500/5 transition-all duration-200 resize-none"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm outline-none focus:border-orange-500/60 focus:bg-orange-500/5 transition-all duration-200 resize-none"
               />
             </div>
 
             {/* Submit Button */}
-            <button className="w-full py-3.5 bg-linear-to-r from-purple-500 to-cyan-400 hover:from-purple-600 hover:to-cyan-500 text-white font-bold text-sm tracking-widest rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/40 mb-6">
+            <button className="w-full py-3.5 bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] hover:from-orange-600 hover:to-red-500 text-white font-bold text-sm tracking-widest rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/40 mb-6">
               Send Message ✦
             </button>
           </div>

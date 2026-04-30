@@ -116,7 +116,10 @@ const Skills = () => {
                                 className='w-10 h-10 object-contain'
                             />
                             <span className='font-mono text-[10px] text-gray-500 group-hover:text-purple-300 tracking-wider transition-colors duration-300'>
-                                {skill.alt}
+                                
+                                 <span className='bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent'>
+                                   {skill.alt}
+                                </span>
                             </span>
                         </motion.div>
                     ))}

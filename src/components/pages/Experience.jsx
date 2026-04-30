@@ -59,7 +59,7 @@ function ExperienceCard({ exp, i, scrollDir }) {
                     absolute left-6 md:left-1/2
                     -translate-x-1/2
                     w-4 h-4 rounded-full z-10
-                    bg-linear-to-br from-purple-400 to-cyan-400
+                    bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040]
                     border-2 border-white/20
                     shadow-[0_0_16px_4px_rgba(192,132,252,0.7)]
                 "
@@ -100,8 +100,8 @@ function ExperienceCard({ exp, i, scrollDir }) {
                     {exp.role}
                 </h3>
 
-                {/* Company + Date */}
-                <p className="font-jakarta text-sm mt-1 font-medium bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                {/* Company + Date — orange gradient */}
+                <p className="font-jakarta text-sm mt-1 font-medium bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
                     {exp.company}
                     <span className="hidden md:inline font-mono"> • {exp.date}</span>
                 </p>
@@ -114,12 +114,18 @@ function ExperienceCard({ exp, i, scrollDir }) {
                     {exp.desc}
                 </p>
 
-                {/* Tags */}
+                {/* Tags — purple border/bg, orange gradient text */}
                 <div className="flex flex-wrap gap-2 mt-4">
                     {exp.tags.map((tag, t) => (
                         <span
                             key={t}
-                            className="font-mono text-xs px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 hover:border-purple-400/60 hover:bg-purple-500/20 transition-all duration-200"
+                            className="font-mono text-xs px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 hover:border-purple-400/60 hover:bg-purple-500/20 transition-all duration-200"
+                            style={{
+                                background: 'linear-gradient(to right, #ff8a00, #ff4d00, #ff0040)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text',
+                            }}
                         >
                             {tag}
                         </span>
@@ -132,10 +138,9 @@ function ExperienceCard({ exp, i, scrollDir }) {
 
 export default function Experience() {
     const sectionRef = useRef(null)
-    const timelineRef = useRef(null)  // ← separate ref for the cards container
+    const timelineRef = useRef(null)
     const scrollDir = useScrollDirection()
 
-    // Title scroll animation
     const { scrollYProgress: titleProgress } = useScroll({
         target: sectionRef,
         offset: ["start end", "center center"]
@@ -143,15 +148,13 @@ export default function Experience() {
     const titleY = useTransform(titleProgress, [0, 1], [40, 0])
     const titleOpacity = useTransform(titleProgress, [0, 0.5], [0, 1])
 
-    // ── Live line — tracks scroll through the cards only ──
     const { scrollYProgress: lineProgress } = useScroll({
         target: timelineRef,
-        offset: ["start center", "end center"]  // grows as you scroll through cards
+        offset: ["start center", "end center"]
     })
     const lineScaleY = useTransform(lineProgress, [0, 1], [0, 1])
-    const dotTop = useTransform(lineProgress, [0, 1], ["0%", "100%"])  // traveling dot
+    const dotTop = useTransform(lineProgress, [0, 1], ["0%", "100%"])
 
-    // Scroll-direction-aware fadeUp helper
     const fadeUp = (delay = 0) => ({
         initial: "hidden",
         whileInView: "visible",
@@ -171,22 +174,22 @@ export default function Experience() {
                 style={{ y: titleY, opacity: titleOpacity }}
                 className="flex flex-col items-center text-center gap-4 mb-20"
             >
-                {/* Pill label */}
+                {/* Pill — purple border, orange gradient text */}
                 <motion.span
                     {...fadeUp(0)}
                     className="w-fit font-mono text-xs font-semibold tracking-widest uppercase border border-purple-500/40 bg-purple-500/10 px-4 py-1.5 rounded-full"
                 >
-                    <span className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent">
                         experience
                     </span>
                 </motion.span>
 
-                {/* Big title — staggered */}
+                {/* Big title */}
                 <h2 className="font-syne text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight">
                     <motion.span {...fadeUp(0.1)} className="text-white block">
                         My Journey
                     </motion.span>
-                    <motion.span {...fadeUp(0.22)} className="bg-linear-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent block">
+                    <motion.span {...fadeUp(0.22)} className="bg-gradient-to-r from-[#ff8a00] via-[#ff4d00] to-[#ff0040] bg-clip-text text-transparent block">
                         So Far
                     </motion.span>
                 </h2>
@@ -197,7 +200,7 @@ export default function Experience() {
                 </motion.p>
             </motion.div>
 
-            {/* ── Timeline container — has its own ref for line tracking ── */}
+            {/* ── Timeline container ── */}
             <div ref={timelineRef} className="max-w-4xl mx-auto relative">
 
                 {/* Track — dim static background line */}
@@ -208,15 +211,15 @@ export default function Experience() {
                     style={{
                         scaleY: lineScaleY,
                         transformOrigin: 'top',
-                        background: 'linear-gradient(to bottom, #c084fc, #a855f7, #22d3ee)',
+                        background: 'linear-gradient(to bottom, #ff8a00, #ff4d00, #ff0040)',
                     }}
                     className="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px"
                 />
 
-                {/* Traveling glowing dot — follows the line tip */}
+                {/* Traveling glowing dot */}
                 <motion.div
                     style={{ top: dotTop }}
-                    className="absolute left-6 md:left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full z-20 bg-cyan-400 shadow-[0_0_12px_5px_rgba(34,211,238,0.8)]"
+                    className="absolute left-6 md:left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full z-20 bg-orange-400 shadow-[0_0_12px_5px_rgba(255,138,0,0.8)]"
                 />
 
                 <div className="space-y-8">
