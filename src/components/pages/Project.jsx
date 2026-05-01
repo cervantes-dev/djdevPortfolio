@@ -42,7 +42,7 @@ const projects = [
     image: '/assets/project-showcase/portfolio.png',
     title: 'Website Portfolio',
     label: 'Personal Project',
-    desc: 'A full-featured laboratory management system for tracking equipment inventory and managing student borrowing requests with real-time status updates.',
+    desc: 'A modern personal portfolio crafted with smooth animations and responsive design, showcasing projects, skills, and experience through an engaging and polished user interface.',
     tags: ['React JS', 'Tailwind CSS', 'Framer-motion', 'Lottie animation'],
     liveLink: 'https://djdev-portfolio.vercel.app/',
     sourceLink: '#',
