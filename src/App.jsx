@@ -9,21 +9,17 @@ import Project from './components/pages/Project';
 import Contact from './components/pages/ContactMe';
 import Footer from './components/pages/Footer';
 
-
-
 export default function App() {
   return (
-    <main className="relative">
+    <main className="relative overflow-x-hidden">
+      {/* Aurora background */}
       <div className="fixed inset-0 z-0">
         <Aurora colorStops={["#d946ef", "#763aba", "#6366f1"]} speed={0.5} amplitude={0.5} />
       </div>
 
-      {/* Fixed header, sits above everything */}
-      <div className="fixed top-0 left-0 w-full z-50">
-        <Header />
-      </div>
+      <Header />
 
-      {/* Add padding-top so content doesn't hide under the header */}
+      {/* Page content */}
       <div className="relative z-10 pt-20">
         <Hero />
       </div>
@@ -37,5 +33,5 @@ export default function App() {
         <Footer />
       </div>
     </main>
-  )
+  );
 }
