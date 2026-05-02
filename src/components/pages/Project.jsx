@@ -52,8 +52,6 @@ const projects = [
 
 // ─── Project Card ─────────────────────────────────────────────────────────────
 const ProjectCard = ({ project, index, scrollDir }) => {
-  const isMobile = project.type === 'mobile'
-
   return (
     <motion.div
       layout
@@ -69,29 +67,21 @@ const ProjectCard = ({ project, index, scrollDir }) => {
         transition-all duration-300 cursor-default"
       style={{
         borderRadius: '4px 20px 4px 20px',
-        /* Unified purple gradient — no per-project cyan tint */
         background: 'linear-gradient(135deg, rgba(168,85,247,0.12), rgba(168,85,247,0.04))',
       }}
     >
-      <div className={`flex flex-col ${isMobile ? 'lg:flex-row' : 'lg:flex-row'} gap-0`}>
+      <div className="flex flex-col lg:flex-row gap-0">
 
         {/* ── Image Panel ── */}
-        <div
-          className={`flex-shrink-0 p-4 pb-0 lg:pb-4 lg:pr-0 ${
-            isMobile ? 'lg:w-[200px]' : 'lg:w-[320px]'
-          }`}
-          style={{ minHeight: isMobile ? 280 : 'auto' }}
-        >
+        <div className="flex-shrink-0 p-4 pb-0 lg:pb-4 lg:pr-0 lg:w-[320px]">
           <div
-            className={`relative overflow-hidden bg-black/30 w-full ${
-              isMobile ? 'lg:w-[190px] h-[260px] lg:h-full' : 'h-[200px] lg:h-full'
-            }`}
+            className="relative overflow-hidden bg-black/30 w-full h-[200px] lg:h-full"
             style={{ borderRadius: '8px' }}
           >
             <img
               src={project.image}
               alt={project.title}
-              className={`absolute inset-0 w-full h-full ${isMobile ? 'object-contain p-3' : 'object-cover'}`}
+              className="absolute inset-0 w-full h-full object-cover"
             />
             {/* Bottom fade */}
             <div
@@ -111,7 +101,7 @@ const ProjectCard = ({ project, index, scrollDir }) => {
         {/* ── Content Panel ── */}
         <div className="flex flex-col gap-3 p-5 lg:p-6 flex-1 min-w-0">
 
-          {/* Top row — label pill matches Skills pill exactly */}
+          {/* Top row — label pill */}
           <div className="flex items-center gap-2 flex-wrap">
             <span
               className="font-mono text-[10px] tracking-wider uppercase px-2.5 py-0.5 rounded-full border border-purple-500/40 bg-purple-500/10"
@@ -119,7 +109,6 @@ const ProjectCard = ({ project, index, scrollDir }) => {
             >
               {project.label}
             </span>
-            {/* gray-500 matches Skills subtitle/body text */}
             <span className="font-mono text-[10px] text-gray-500 ml-auto">{project.year}</span>
           </div>
 
@@ -128,12 +117,12 @@ const ProjectCard = ({ project, index, scrollDir }) => {
             {project.title}
           </h3>
 
-          {/* Description — gray-400 matches Skills subtitle */}
+          {/* Description */}
           <p className="font-jakarta text-sm text-gray-400 leading-relaxed">
             {project.desc}
           </p>
 
-          {/* Tags — border/bg matches Skills card, text uses orange gradient */}
+          {/* Tags */}
           <div className="flex flex-wrap gap-1.5 mt-auto pt-1">
             {project.tags.map((tag, t) => (
               <span
@@ -146,7 +135,7 @@ const ProjectCard = ({ project, index, scrollDir }) => {
             ))}
           </div>
 
-          {/* Action Buttons — both now use the same purple system */}
+          {/* Action Buttons */}
           <div className="flex gap-2 pt-2">
             {project.liveLink && (
               <a
@@ -180,7 +169,7 @@ const ProjectCard = ({ project, index, scrollDir }) => {
         </div>
       </div>
 
-      {/* ── Decorative corners — unified purple, no per-project accent ── */}
+      {/* ── Decorative corners ── */}
       <div
         className="absolute top-0 right-0 w-16 h-16 pointer-events-none transition-all duration-300"
         style={{ borderRadius: '0 20px 0 100%', background: 'rgba(168,85,247,0.10)' }}
@@ -190,10 +179,10 @@ const ProjectCard = ({ project, index, scrollDir }) => {
         style={{ borderRadius: '100% 0 0 20px', background: 'rgba(255,138,0,0.07)' }}
       />
 
-      {/* Bottom hover line — orange gradient, matches Skills hover glow direction */}
+      {/* Bottom hover line */}
       <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-[#ff8a00]/0 via-[#ff4d00]/55 to-[#ff0040]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-      {/* Left accent bar — purple gradient, no per-project accent */}
+      {/* Left accent bar */}
       <div
         className="absolute left-0 top-6 bottom-6 w-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, #a855f7, rgba(168,85,247,0.2))' }}
@@ -279,11 +268,10 @@ const Projects = () => {
           <button
             key={cat}
             onClick={() => setFilter(cat)}
-            className={`font-mono text-[11px] tracking-wider uppercase px-4 py-1.5 rounded-full border transition-all duration-200 ${
-              filter === cat
+            className={`font-mono text-[11px] tracking-wider uppercase px-4 py-1.5 rounded-full border transition-all duration-200 ${filter === cat
                 ? 'border-purple-400/70 bg-purple-500/20 text-white'
                 : 'border-purple-500/20 bg-transparent text-gray-500 hover:border-purple-500/40 hover:text-gray-300'
-            }`}
+              }`}
           >
             {cat === 'All' ? '✦ All' : cat === 'Web' ? '🌐 Web' : '📱 Mobile'}
           </button>
