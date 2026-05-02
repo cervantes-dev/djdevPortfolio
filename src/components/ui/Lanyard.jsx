@@ -23,7 +23,9 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
   }, []);
 
   return (
-    <div className="relative z-0 w-full h-screen flex justify-center items-center transform scale-100 origin-center">
+    // FIX: removed `h-screen` — it overflowed the parent container on mobile.
+    // Now it fills 100% of whatever height the parent (About section) gives it.
+    <div className="relative z-0 w-full h-full flex justify-center items-center">
       <Canvas
         camera={{ position: position, fov: fov }}
         dpr={[1, isMobile ? 1.5 : 2]}
@@ -37,35 +39,10 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
         </Physics>
 
         <Environment blur={0.75}>
-          {/* ✅ Lightformer matches #ff4d00 brand gradient */}
-          <Lightformer
-            intensity={4}
-            color="#ff4d00"
-            position={[0, -1, 5]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={3}
-            color="white"
-            position={[-1, -1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={3}
-            color="white"
-            position={[1, 1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={10}
-            color="white"
-            position={[-10, 0, 14]}
-            rotation={[0, Math.PI / 2, Math.PI / 3]}
-            scale={[100, 10, 1]}
-          />
+          <Lightformer intensity={4} color="#ff4d00" position={[0, -1, 5]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
+          <Lightformer intensity={3} color="white" position={[-1, -1, 1]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
+          <Lightformer intensity={3} color="white" position={[1, 1, 1]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
+          <Lightformer intensity={10} color="white" position={[-10, 0, 14]} rotation={[0, Math.PI / 2, Math.PI / 3]} scale={[100, 10, 1]} />
         </Environment>
       </Canvas>
     </div>
@@ -87,8 +64,12 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   const { nodes, materials } = useGLTF(cardGLB);
   const texture = useTexture(lanyard);
   const [curve] = useState(
-    () =>
-      new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
+    () => new THREE.CatmullRomCurve3([
+      new THREE.Vector3(),
+      new THREE.Vector3(),
+      new THREE.Vector3(),
+      new THREE.Vector3()
+    ])
   );
   const [dragged, drag] = useState(false);
   const [hovered, hover] = useState(false);
@@ -96,17 +77,15 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
-  useSphericalJoint(j3, card, [
-    [0, 0, 0],
-    [0, 1.5, 0]
-  ]);
+  useSphericalJoint(j3, card, [[0, 0, 0], [0, 1.5, 0]]);
 
   useEffect(() => {
-    if (hovered) {
+    // FIX: only change cursor on desktop — on mobile there's no cursor
+    if (!isMobile && hovered) {
       document.body.style.cursor = dragged ? 'grabbing' : 'grab';
       return () => void (document.body.style.cursor = 'auto');
     }
-  }, [hovered, dragged]);
+  }, [hovered, dragged, isMobile]);
 
   useFrame((state, delta) => {
     if (dragged) {
@@ -120,10 +99,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
       [j1, j2].forEach(ref => {
         if (!ref.current.lerped) ref.current.lerped = new THREE.Vector3().copy(ref.current.translation());
         const clampedDistance = Math.max(0.1, Math.min(1, ref.current.lerped.distanceTo(ref.current.translation())));
-        ref.current.lerped.lerp(
-          ref.current.translation(),
-          delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed))
-        );
+        ref.current.lerped.lerp(ref.current.translation(), delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed)));
       });
       curve.points[0].copy(j3.current.translation());
       curve.points[1].copy(j2.current.lerped);
@@ -152,21 +128,30 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
         <RigidBody position={[1.5, 0, 0]} ref={j3} {...segmentProps}>
           <BallCollider args={[0.1]} />
         </RigidBody>
-        <RigidBody position={[2, 0, 0]} ref={card} {...segmentProps} type={dragged ? 'kinematicPosition' : 'dynamic'}>
+        <RigidBody
+          position={[2, 0, 0]}
+          ref={card}
+          {...segmentProps}
+          type={dragged ? 'kinematicPosition' : 'dynamic'}
+        >
           <CuboidCollider args={[0.8, 1.125, 0.01]} />
           <group
             scale={2.25}
             position={[0, -1.2, -0.05]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
-            onPointerUp={e => (e.target.releasePointerCapture(e.pointerId), drag(false))}
-            onPointerDown={e => (
-              e.target.setPointerCapture(e.pointerId),
-              drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation())))
-            )}
+            onPointerOver={() => !isMobile && hover(true)}
+            onPointerOut={() => !isMobile && hover(false)}
+            onPointerUp={e => {
+              e.target.releasePointerCapture(e.pointerId);
+              drag(false);
+            }}
+            onPointerDown={e => {
+              // FIX: block drag entirely on mobile/touch devices
+              if (isMobile) return;
+              e.target.setPointerCapture(e.pointerId);
+              drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation())));
+            }}
           >
             <mesh geometry={nodes.card.geometry}>
-              {/* ✅ Original card material — untouched */}
               <meshPhysicalMaterial
                 map={materials.base.map}
                 map-anisotropy={16}
@@ -184,8 +169,6 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
 
       <mesh ref={band}>
         <meshLineGeometry />
-        {/* ✅ #ff4d00 tints the texture with your brand gradient middle color
-            useMap blends texture pattern ON TOP of the color for a woven look */}
         <meshLineMaterial
           color="#ff4d00"
           depthTest={false}
